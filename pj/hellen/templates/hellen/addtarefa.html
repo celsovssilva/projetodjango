@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="col-9 search-div">
+    <h1>Adicionar nova tarefa</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" class="btn btn-sucess" value="Criar tarefa">
+    </form>
+</div>
+{% endblock %}
