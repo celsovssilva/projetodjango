@@ -9,10 +9,21 @@ from django.core.paginator import Paginator
 # Create your views here.
 
 def home(request):
-    taskList = hellen.objects.all().order_by('-created_at')
-    paginator = Paginator(taskList,3)
-    page = request.GET.get('page')
-    tasks= paginator.get_page(page)
+    search= request.GET.get('search')
+
+    if search:
+        tasks= hellen.objects.filter(title__icontains= search)
+
+   
+    else:
+
+
+
+
+        taskList = hellen.objects.all().order_by('-created_at')
+        paginator = Paginator(taskList,3)
+        page = request.GET.get('page')
+        tasks= paginator.get_page(page)
     return render(request, 'hellen/home.html', {'task': tasks})
 
 

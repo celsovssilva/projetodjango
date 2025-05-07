@@ -18,7 +18,7 @@ Including another URLconf
 from django.urls import path
 from .  import views
 urlpatterns = [
-    path('', views.home),
+    path('', views.home, name="home"),
     path('hnp/<int:id>',views.hnp,name='hnpv'),
     path('novatarefa/', views.novat,name='novatarefa'),
     path('editi/<int:id>', views.editTask,name='edit'),
