@@ -5,40 +5,6 @@ body {
     color: #333;
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #eee;
-    margin-bottom: 20px;
-}
-
-.logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    gap: 20px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: #555;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
-
-nav ul li a:hover {
-    color: #007bff;
-}
-
 .container {
     max-width: 800px;
     margin: 20px auto;
@@ -83,25 +49,7 @@ h1 {
 .search-form button:hover {
     background-color: #0056b3;
 }
-.add-task-btn {
-    display: inline-block;
-    padding: 10px 15px;
-    background-color: #007bff; /* Cor de fundo azul */
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-    font-size: 16px; /* Adicionei um tamanho de fonte para consistência */
-}
 
-.add-task-btn:hover {
-    background-color: #0056b3; /* Um tom mais escuro para o hover */
-}
-
-.add-task-btn i.fas.fa-plus {
-    margin-right: 5px; /* Adiciona um pequeno espaço entre o ícone e o texto */
-    color: white; /* Garante que o ícone seja branco */
-}
 /* Estilos para as mensagens */
 .mesagess {
     list-style: none;
