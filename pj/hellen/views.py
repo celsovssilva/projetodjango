@@ -3,11 +3,12 @@ from django.shortcuts import redirect, render, get_object_or_404
 from .forms import TarefaForm
 from django.contrib import messages
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required 
 
 
 
 # Create your views here.
-
+@login_required
 def home(request):
     search= request.GET.get('search')
 

@@ -13,20 +13,30 @@
             <div class="logo">To Do</div>
             <nav>
                 <ul>
-                    <li><a href="#">Tarefas</a></li>
-                    <li><a href="#">Usuários</a></li>
+                    {% if user.is_authenticated %}
+                        <li><a  href="/">Tarefas</a></li>
+                        <li><a href="#">Usuários</a></li>
+                     {% else %}
+                        <li><a href="/accounts/login">Entrar</a></li>
+                    {% endif %}
+                    
                     <li><a href="#">Sobre</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="/accounts/logout">Sair</a></li>
+                    {% endif %}
+
+
                 </ul>
             </nav>
         </header>
         <section class="main-content">
             <h1>Lista de Tarefas</h1>
             <div class="input-group">
-              {% if user.is_authenticated %}
+             
               
               <a href="{% url 'novatarefa' %}" class="add-task-btn"><i class="fas fa-plus"></i> Adicionar tarefa</a>
           </div>
-              {% endif %}  
+             
             {% block content %}{% endblock %}
         </section>
         <footer>

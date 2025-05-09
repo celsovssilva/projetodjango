@@ -281,10 +281,3 @@ input[type="password"] {
     background-color: #0056b3;
 }
 
-/* Estilos para as divs "um", "dois", "tres" - se você quiser que elas apareçam */
-.row .um,
-.row .dois,
-.row .tres {
-    /* Você pode adicionar estilos específicos para essas divs aqui, como largura, altura, cor de fundo, etc. */
-    display: none; /* Por padrão, não as mostro, mas você pode mudar isso */
-}
