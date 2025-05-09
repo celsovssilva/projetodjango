@@ -14,16 +14,24 @@
             <nav>
                 <ul>
                     {% if user.is_authenticated %}
-                        <li><a  href="/">Tarefas</a></li>
-                        <li><a href="#">Usuários</a></li>
-                     {% else %}
-                        <li><a href="/accounts/login">Entrar</a></li>
-                    {% endif %}
-                    
-                    <li><a href="#">Sobre</a></li>
-                    {% if user.is_authenticated %}
-                    <li><a href="/accounts/logout">Sair</a></li>
-                    {% endif %}
+  <li class="nav-item">
+    <a class="nav-link" href="/tarefas">Tarefas</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/usuarios">Usuários</a>
+  </li>
+  <li class="nav-item">
+    <form method="post" action="{% url 'logout' %}">
+      {% csrf_token %}
+      <button class="nav-link btn btn-link" type="submit" style="padding: 0; border: none;">Sair</button>
+    </form>
+  </li>
+{% else %}
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'login' %}">Login</a>
+  </li>
+{% endif %}
+
 
 
                 </ul>

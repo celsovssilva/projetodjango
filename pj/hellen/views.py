@@ -27,11 +27,11 @@ def home(request):
         tasks= paginator.get_page(page)
     return render(request, 'hellen/home.html', {'task': tasks})
 
-
+@login_required
 def hnp(request,id):
     hn= get_object_or_404(hellen, pk=id)
     return render(request,'hellen/hnp.html', {'hn': hn})
-
+@login_required
 def novat(request):
     if request.method == 'POST':
         form = TarefaForm(request.POST)
@@ -46,7 +46,7 @@ def novat(request):
         form= TarefaForm()
         return render(request, 'hellen/addtarefa.html', {'form': form})
     
-
+@login_required
 def editTask(request, id ):
     task= get_object_or_404(hellen,pk=id)
     form = TarefaForm(instance=task)
@@ -63,7 +63,7 @@ def editTask(request, id ):
     else:
         return render(request, 'hellen/editi.html', {'form': form, ' task': task})
     
-
+@login_required
 def deleteTask(request, id):
   task= get_object_or_404(hellen,pk=id)
   task.delete()  
