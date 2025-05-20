@@ -281,3 +281,7 @@ input[type="password"] {
     background-color: #0056b3;
 }
 
+.change-form-p{
+    margin-top: 30px;
+    text-align: center;
+}

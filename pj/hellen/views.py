@@ -13,7 +13,7 @@ def home(request):
     search= request.GET.get('search')
 
     if search:
-        tasks= hellen.objects.filter(title__icontains= search)
+        tasks= hellen.objects.filter(title__icontains= search, user= request.user)
 
    
     else:
@@ -21,7 +21,7 @@ def home(request):
 
 
 
-        taskList = hellen.objects.all().order_by('-created_at')
+        taskList = hellen.objects.all().order_by('-created_at').filter(user= request.user)
         paginator = Paginator(taskList,3)
         page = request.GET.get('page')
         tasks= paginator.get_page(page)
@@ -39,6 +39,7 @@ def novat(request):
         if form.is_valid():
             tf= form.save(commit=False)
             tf.done = 'doing'
+            tf.user= request.user 
             tf.save()
             return redirect('/')
 
