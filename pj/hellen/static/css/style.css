@@ -154,6 +154,23 @@ h1 {
     border-bottom: 1px solid #eee;
 }
 
+.task-item.done {
+    background-color: #ccc;
+
+}
+
+.task-item.done span a {
+    text-decoration: line-through;
+    color: #777; /* Um cinza mais claro para o texto riscado */
+}
+
+.task-item span a {
+    text-decoration: none;
+    color: #333;
+    flex-grow: 1;
+}
+
+
 .task-item:last-child {
     border-bottom: none;
 }
