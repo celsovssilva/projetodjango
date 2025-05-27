@@ -11,13 +11,18 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def home(request):
     search= request.GET.get('search')
+    filter= request.GET.get('filter')
 
     if search:
         tasks= hellen.objects.filter(title__icontains= search, user= request.user)
-
+        
+   
    
     else:
-
+        if filter == 'doing':
+            task_list = task_list.filter(done='doing')
+        elif filter == 'done':
+            task_list = task_list.exclude(done='doing')  
 
 
 
@@ -25,7 +30,7 @@ def home(request):
         paginator = Paginator(taskList,3)
         page = request.GET.get('page')
         tasks= paginator.get_page(page)
-    return render(request, 'hellen/home.html', {'task': tasks})
+    return render(request, 'hellen/home.html', {'task': tasks, 'search': search, 'filter': filter})
 
 @login_required
 def hnp(request,id):
@@ -71,3 +76,17 @@ def deleteTask(request, id):
   messages.info(request,"tarefa deletada")
 
   return redirect('/')
+
+@login_required
+def status(request, id):
+    task= get_object_or_404(hellen,pk=id)
+
+    if task.done == 'doing':
+        task.done = 'done'
+        messages.success(request, "tarefa concluida")
+    else:
+        task.done = 'doing'
+        messages.success(request, "tarefa em andamento")
+    
+    task.save()
+    return redirect('/')

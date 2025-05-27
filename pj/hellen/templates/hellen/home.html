@@ -1,27 +1,47 @@
-{% extends "../base.html" %} {% block titulo %}Página Inicial{% endblock %} 
+{% extends "../base.html" %} {% block titulo %}Página Inicial{% endblock %}
 
 {% block content %}
-  <form method="GET" action="" class="search-form">
+    <form method="GET" action="" class="search-form">
         <input type="text" name="search" value="{{ search_query }}" placeholder="Buscar tarefas...">
         <button type="submit">Buscar</button>
     </form>
+    <div class="filter-tasks">
+        <strong>Filtrar:</strong>
+        <a href="{% url 'home' %}" {% if not request.GET.status %}class="active"{% endif %}>Todas</a> |
+        <a href="{% url 'home' %}?status=doing" {% if request.GET.status == 'doing' %}class="active"{% endif %}>Pendentes</a> |
+        <a href="{% url 'home' %}?status=done" {% if request.GET.status == 'done' %}class="active"{% endif %}>Concluídas</a>
+    </div>
+    <br>
 {% if messagens %}
 <ul class= "mesagess">
-{% for message in mesagess %}
+{% for message in messagens %}
 <li{% if message.tags %}class="alert alert-{{message.tags}}"{% endif %}>{{message}}</li>
 {% endfor %}
 </ul>
 {% endif %}
 
 <ul class="task-list">
-      {% for task in task %}
+    {% for task in task %}
+        {% if task.done == 'doing' %}
             <li class="task-item">
-                <span><a href="/hnp/{{ task.id }}">{{ task.title }}</a></span>
-                <a href="/delete/{{task.id}}"><span><i class="fas fa-trash"></i></span></a>
-                <a href="/editi/{{task.id}}"><span><i class="fas fa-edit"></i></span></a>
-            </li>
-        {% endfor %}
-    
+        {% else %}
+            <li class="task-item done">
+        {% endif %}
+            <span><a href="/hnp/{{ task.id }}">{{ task.title }}</a></span>
+            <a href="/delete/{{task.id}}"><span><i class="fas fa-trash"></i></span></a>
+            <a href="/editi/{{task.id}}"><span><i class="fas fa-edit"></i></span></a>
+            <a href="/changestatus/{{task.id}}">
+                <span>
+                    {% if task.done == 'doing' %}
+                        <i class="far fa-square"></i> {# Ícone de não concluído (quadrado vazio) #}
+                    {% else %}
+                        <i class="fas fa-check-square"></i> {# Ícone de concluído (quadrado com check) #}
+                    {% endif %}
+                </span>
+            </a>
+        </li>
+    {% endfor %}
+
 </ul>
 <div class="pagination">
     <span class="step-links">
@@ -39,4 +59,4 @@
 
 </div>
 
-{% endblock %}
+{% endblock %}  

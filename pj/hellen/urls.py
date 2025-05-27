@@ -22,5 +22,6 @@ urlpatterns = [
     path('hnp/<int:id>',views.hnp,name='hnpv'),
     path('novatarefa/', views.novat,name='novatarefa'),
     path('editi/<int:id>', views.editTask,name='edit'),
+     path('changestatus/<int:id>', views.status,name='status'),
     path('delete/<int:id>', views.deleteTask,name='delete'),
 ]

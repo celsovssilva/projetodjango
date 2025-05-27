@@ -155,13 +155,13 @@ h1 {
 }
 
 .task-item.done {
-    background-color: #ccc;
-
+    background-color: #f9f9f9; /* Um fundo levemente diferente para tarefas concluídas */
+    color: #777; /* Texto um pouco mais claro */
 }
 
 .task-item.done span a {
     text-decoration: line-through;
-    color: #777; /* Um cinza mais claro para o texto riscado */
+    color: #999; /* Texto riscado mais claro */
 }
 
 .task-item span a {
@@ -189,29 +189,33 @@ h1 {
 }
 
 .task-item a span i:hover {
-    color: #d9534f; /* Vermelho para delete, pode ajustar */
+    color: #d9534f; /* Vermelho para delete */
 }
 
-.task-item a:nth-child(3) span i { /* Estilo específico para o ícone de editar (o terceiro link) */
-    color: #5cb85c; /* Verde para editar, pode ajustar */
+.task-item a:nth-child(3) span i { /* Estilo específico para o ícone de editar */
+    color: #5cb85c; /* Verde para editar */
 }
 
 .task-item a:nth-child(3) span i:hover {
     color: #4cae4c;
 }
 
+.task-item a:nth-child(4) span i { /* Estilo para o quarto link (status) */
+    font-size: 1.1em;
+    transition: color 0.3s ease;
+}
 
+.task-item:not(.done) a:nth-child(4) span i { /* Estilo para ícone não concluído */
+    color: gray; /* Cor cinza para não concluído */
+}
 
+.task-item.done a:nth-child(4) span i { /* Estilo para ícone concluído */
+    color: blue; /* Cor azul para concluído */
+}
 
-
-
-
-
-
-
-
-
-
+.task-item a:nth-child(4) span i:hover {
+    opacity: 0.8; /* Feedback visual ao passar o mouse */
+}
 
 .pagination {
     display: flex;
@@ -301,4 +305,19 @@ input[type="password"] {
 .change-form-p{
     margin-top: 30px;
     text-align: center;
+}
+
+.filter-tasks {
+    margin-top: 15px;
+}
+
+.filter-tasks a {
+    text-decoration: none;
+    color: #007bff;
+    margin-right: 10px;
+}
+
+.filter-tasks a.active {
+    font-weight: bold;
+    color: #333;
 }
